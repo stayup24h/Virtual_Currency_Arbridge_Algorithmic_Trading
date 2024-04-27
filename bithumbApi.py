@@ -7,7 +7,7 @@ import urllib.parse
 
 headers = {"accept": "application/json"}
 
-class BithumbCoin: #빗썸 코인api class
+class Bithumb: #빗썸 api class, get 계열(코인 가격, 거래량등 개인정보 필요x)
     def __init__(self, name): #class 생성시 이름 받기
         self.name = name
         self.url = "https://api.bithumb.com/public/orderbook/"+self.name+"_KRW"
@@ -18,28 +18,33 @@ class BithumbCoin: #빗썸 코인api class
         return(self.response)
 
 
-class MyBithumb: # 내 빗썸 관리 class
+class MyBithumb: #빗썸 api class, post 계열(거래, 송금등 개인정보 필요 o)
     api_url = "https://api.bithumb.com"
 
-    def __init__(self, user_api_key, user_api_secret):
+    def __init__(self, user_api_key, user_api_secret): #class 생성시 api key와 secret key 필요
         self.api_key = user_api_key
         self.api_secret = user_api_secret
 
-    def body_callback(self, buf):
-        self.contents = buf
-
-    def microtime(self, get_as_float = False):
+    def microtime(self, get_as_float = False): #시간 호출 함수
         if get_as_float:
             return time.time()
         else:
             return '%f %d' % math.modf(time.time())
         
-    def usecTime(self):
+    def usecTime(self): #시간을 bithumb이 원하는 표현으로 바꾸는 함수
         mt = self.microtime(False)
         mt_array = mt.split(" ")[:2]
         return mt_array[1] + mt_array[0][2:5]
     
-    def bithumbApiCall(self, endpoint, rgParams):
+    def myBithumbWallet(self): #내 bithumb 계좌 잔액 불러오는 함수
+        rgParams = {
+            'endpoint': '/info/balance',
+            "currency": "ALL",
+        }
+        return self.bithumbApiCall(rgParams['endpoint'],rgParams).text
+    
+    
+    def bithumbApiCall(self, endpoint, rgParams): #bithumApi를 호출하는 함수, rgParams를 세부적으로 설정해줘야함
         endpoint_item_array = {
             "endpoint" : endpoint
         }
@@ -74,4 +79,4 @@ class MyBithumb: # 내 빗썸 관리 class
         url = self.api_url + endpoint
 
         r = requests.post(url, headers=headers, data=rgParams)
-        return r.text
+        return r
