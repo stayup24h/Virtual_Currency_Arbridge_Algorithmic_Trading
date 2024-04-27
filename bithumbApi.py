@@ -5,15 +5,14 @@ import base64
 import hmac, hashlib
 import urllib.parse
 
-headers = {"accept": "application/json"}
-
 class Bithumb: #빗썸 api class, get 계열(코인 가격, 거래량등 개인정보 필요x)
+    headers = {"accept": "application/json"}
     def __init__(self, name): #class 생성시 이름 받기
         self.name = name
         self.url = "https://api.bithumb.com/public/orderbook/"+self.name+"_KRW"
     
     def getData(self): # 코인 정보 불러오기
-        self.response = requests.get(self.url, headers=headers)
+        self.response = requests.get(self.url, headers=self.headers)
         self.response
         return(self.response)
 
@@ -44,7 +43,7 @@ class MyBithumb: #빗썸 api class, post 계열(거래, 송금등 개인정보 �
         return self.bithumbApiCall(rgParams['endpoint'],rgParams).text
     
     
-    def bithumbApiCall(self, endpoint, rgParams): #bithumApi를 호출하는 함수, rgParams를 세부적으로 설정해줘야함
+    def bithumbApiCall(self, endpoint, rgParams): #bithumApi를 호출하는 함수, rgParams를 세부적으로 설정해준 함수를 호출하는 방식으로 사용
         endpoint_item_array = {
             "endpoint" : endpoint
         }
