@@ -7,3 +7,8 @@
 #### binance
 - binance api : <https://www.binance.com/en/binance-api> <br/>
  
+ ### coinone
+ - coinone api : <https://docs.coinone.co.kr/> <br/>
+
+ ### upbit
+ - upbit api : <https://docs.upbit.com/> <br/>
