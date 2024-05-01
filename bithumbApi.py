@@ -38,10 +38,27 @@ class MyBithumb: #빗썸 api class, post 계열(거래, 송금등 개인정보 �
     def myBithumbWallet(self): #내 bithumb 계좌 잔액 불러오는 함수
         rgParams = {
             'endpoint': '/info/balance',
-            "currency": "ALL",
+            "currency": "BTC",
         }
         return self.bithumbApiCall(rgParams['endpoint'],rgParams).text
     
+    def buyCoinBithumb(self, units, ordercurrency, paymentcurrency): #코인 시장가 매수하는 함수
+        rgParams = {
+            'endpoint': '/trade/market_buy',
+            'units': units,
+            'order_currency': ordercurrency,
+            'payment_currency': paymentcurrency
+        }
+        return self.bithumbApiCall(rgParams['endpoint'], rgParams)
+    
+    def sellCoinBithumb(self, units, ordercurrency, paymentcurrency): #코인 시장가 매도하는 함수
+        rgParams = {
+            'endpoint': '/trade/market_sell',
+            'units': units,
+            'order_currency': ordercurrency,
+            'payment_currency': paymentcurrency
+        }
+        return self.bithumbApiCall(rgParams['endpoint'], rgParams)
     
     def bithumbApiCall(self, endpoint, rgParams): #bithumApi를 호출하는 함수, rgParams를 세부적으로 설정해준 함수를 호출하는 방식으로 사용
         endpoint_item_array = {
