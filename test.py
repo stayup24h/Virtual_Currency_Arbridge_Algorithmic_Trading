@@ -1,6 +1,6 @@
-import BithumbApi
+import bithumbApi
 
-myBithum = BithumbApi.MyBithumb("api_key", "sec_key")
+myBithum = bithumbApi.MyBithumb("api_key", "sec_key")
 
 rgParams = {
     'endpoint': '/info/balance',
