@@ -60,6 +60,21 @@ class MyBithumb: #빗썸 api class, post 계열(거래, 송금등 개인정보 �
         }
         return self.bithumbApiCall(rgParams['endpoint'], rgParams)
     
+    def withdrawBithumb(self, units, address, destination, currency, net_type, exchange_name, ko_name, en_name): #코인 출금하는 함수(수량, 1차주소, 2차주소, 출금할코인, 출금 네트워크, 출금 거래소명, 수취인 한국이름, 수취인 영어이름)
+        rgParams = {
+            'endpoint': '/trade/btc_withdrawal',
+            'units': units,
+            'address': address,
+            'destination': destination,
+            'currency': currency,
+            'net_type': net_type,
+            'exchange_name': exchange_name,
+            'cust_type': '01',
+            'ko_name': ko_name,
+            'en_name': en_name
+        }
+        return self.bithumbApiCall(rgParams['endpoint'], rgParams)
+    
     def bithumbApiCall(self, endpoint, rgParams): #bithumApi를 호출하는 함수, rgParams를 세부적으로 설정해준 함수를 호출하는 방식으로 사용
         endpoint_item_array = {
             "endpoint" : endpoint
