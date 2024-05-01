@@ -51,7 +51,7 @@ class MyBithumb: #빗썸 api class, post 계열(거래, 송금등 개인정보 �
         }
         return self.bithumbApiCall(rgParams['endpoint'], rgParams)
     
-    def sellCoinBithumb(self, units, ordercurrency, paymentcurrency): #코인 시장가 매도하는 함수
+    def sellCoinBithumb(self, units, ordercurrency, paymentcurrency): #코인 시장가 매도하는 함수 (수량, 매도할 코인, 사용할 화페)
         rgParams = {
             'endpoint': '/trade/market_sell',
             'units': units,
