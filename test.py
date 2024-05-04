@@ -7,4 +7,4 @@ rgParams = {
     "currency": "ALL",
 }
 
-print(myBithum.bithumbApiCall(rgParams['endpoint'],rgParams))
+print(myBithum.bithumbApiCall(rgParams['endpoint'],rgParams).text)
