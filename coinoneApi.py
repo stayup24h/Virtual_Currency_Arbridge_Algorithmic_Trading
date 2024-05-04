@@ -46,10 +46,10 @@ class MyCoinone:
         return self.coinoneApiCall(action, payload)
     
     
-    def buyCoin(self, quantity, target_currency, quote_currency): # 코인 시장가 매수하는 함수(수량, 매수할 코인, 마켓 기준 화폐)
+    def buyCoinCoinone(self, quantity, target_currency, quote_currency): # 코인 시장가 매수하는 함수(수량, 매수할 코인, 마켓 기준 화폐)
         self.orderCoin('BUY', quantity, quote_currency, target_currency)
     
-    def sellCoin(self, quantity, target_currency, quote_currency): # 코인 시장가 매도하는 함수(수량, 매도할 코인, 마켓 기준 화폐)
+    def sellCoinCoinone(self, quantity, target_currency, quote_currency): # 코인 시장가 매도하는 함수(수량, 매도할 코인, 마켓 기준 화폐)
         self.orderCoin('SELL', quantity, quote_currency, target_currency)
 
 
