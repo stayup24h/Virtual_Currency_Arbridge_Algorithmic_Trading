@@ -13,3 +13,7 @@ class Binance: #binance api class, get 계열(코인 가격, 거래량등 개인
             value = res.json()
 
             return value
+        
+class myBinance: #binance api class, post 계열(거래, 송금등 개인정보 필요 o)
+      def __init__(self):
+            pass
