@@ -8,9 +8,8 @@ import urllib.parse
 class BithumbCoin: #빗썸 api class, get 계열(코인 가격, 거래량등 개인정보 필요x)
     headers = {"accept": "application/json"}
 
-    def getData(self, target_currency): # 코인 정보 불러오기
-        self.target_currency = target_currency
-        self.url = f"https://api.bithumb.com/public/orderbook/{self.target_currency}_KRW"
+    def getData(self, target_currency, payment_currency): # 코인 정보 불러오기
+        self.url = f"https://api.bithumb.com/public/ticker/{target_currency}_{payment_currency}"
         self.response = requests.get(self.url, headers=self.headers)
         
         return(self.response)
@@ -37,7 +36,7 @@ class MyBithumb: #빗썸 api class, post 계열(거래, 송금등 개인정보 �
     def myBithumbWallet(self): #내 bithumb 계좌 잔액 불러오는 함수
         rgParams = {
             'endpoint': '/info/balance',
-            "currency": "BTC",
+            "currency": "USDC",
         }
         return self.bithumbApiCall(rgParams['endpoint'],rgParams).text
     
